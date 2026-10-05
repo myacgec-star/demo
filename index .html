@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="買動漫會員註冊單頁介面示意">
+  <title>買動漫｜會員註冊</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: light;
+  --blue: #178fd0;
+  --blue-dark: #0877ba;
+  --blue-pale: #edf8ff;
+  --orange: #ff7900;
+  --ink: #263746;
+  --muted: #778694;
+  --line: #e3eaf0;
+  --surface: #fff;
+  --page: #f5f8fb;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); background: var(--page); font-size: 15px; line-height: 1.65; }
+a { color: var(--blue-dark); text-decoration: none; }
+button, input { font: inherit; }
+.site-header { height: 74px; padding: 0 max(24px, calc((100% - 1120px) / 2)); display: flex; align-items: center; justify-content: space-between; background: #fff; border-bottom: 1px solid #edf0f3; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: inherit; }
+.brand-mark { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 13px; color: white; background: linear-gradient(140deg, #36b6ec, #1684c8); font-weight: 800; font-size: 23px; box-shadow: 0 5px 12px #1684c82b; }
+.brand-copy { display: grid; line-height: 1.15; }
+.brand-copy strong { font-size: 19px; letter-spacing: .04em; }
+.brand-copy small { margin-top: 4px; color: #8494a2; font-size: 9px; letter-spacing: .13em; }
+.header-link { color: var(--muted); font-size: 13px; }
+.header-link strong { margin-left: 7px; color: var(--blue-dark); }
+.page-shell { width: min(100% - 40px, 1050px); margin: 0 auto; }
+.intro { text-align: center; padding: 38px 0 22px; }
+.eyebrow, .stage-label { color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .17em; }
+.intro h1 { margin: 3px 0 5px; color: #1e3547; font-size: clamp(27px, 4vw, 34px); letter-spacing: .03em; }
+.intro p { margin: 0; color: var(--muted); font-size: 14px; }
+.content-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(260px, .7fr); gap: 20px; align-items: start; }
+.form-card, .side-panel { border: 1px solid #e9eef2; border-radius: 16px; background: var(--surface); box-shadow: 0 12px 35px #1e4a6810; }
+.form-card { padding: 28px clamp(22px, 4vw, 40px) 22px; }
+.card-heading { display: flex; align-items: center; justify-content: space-between; }
+.stage-label { margin: 0 0 3px; font-size: 9px; }
+.card-heading h2 { margin: 0; font-size: 21px; letter-spacing: .01em; }
+.lock-icon { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; color: var(--blue-dark); background: var(--blue-pale); font-weight: 800; }
+.card-lead { margin: 8px 0 21px; color: var(--muted); font-size: 13px; }
+fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+fieldset + fieldset { margin-top: 23px; padding-top: 20px; border-top: 1px solid #edf1f4; }
+legend { width: 100%; margin: 0 0 9px; color: #354a5b; font-size: 15px; font-weight: 800; }
+legend span { display: inline-grid; width: 25px; height: 25px; margin-right: 8px; place-items: center; border-radius: 8px; color: var(--blue-dark); background: var(--blue-pale); font-size: 10px; }
+.form-field { min-width: 0; margin-top: 14px; }
+.form-field label { display: block; margin-bottom: 6px; color: #354a5b; font-size: 13px; font-weight: 700; }
+.form-field label em { margin-left: 5px; color: #e87732; font-size: 10px; font-style: normal; font-weight: 600; }
+input:not([type=checkbox]) { width: 100%; min-width: 0; height: 44px; padding: 0 12px; border: 1px solid #dce5eb; border-radius: 8px; outline: none; background: #fff; color: var(--ink); transition: border-color .15s, box-shadow .15s; }
+input:not([type=checkbox])::placeholder { color: #a2afb9; font-size: 13px; }
+input:not([type=checkbox]):focus { border-color: #49a9dc; box-shadow: 0 0 0 3px #178fd019; }
+.input-with-prefix { display: flex; min-width: 0; height: 44px; overflow: hidden; border: 1px solid #dce5eb; border-radius: 8px; background: #fff; }
+.input-with-prefix:focus-within { border-color: #49a9dc; box-shadow: 0 0 0 3px #178fd019; }
+.input-with-prefix span { display: grid; flex: none; place-items: center; padding: 0 12px; border-right: 1px solid #e6edf1; color: #667887; background: #f8fafb; font-size: 13px; }
+.input-with-prefix input { height: 42px; border: 0; box-shadow: none !important; }
+.input-action-row { display: flex; gap: 9px; align-items: center; }
+.input-action-row > input, .input-action-row > .input-with-prefix { flex: 1; }
+.field-hint { margin: 4px 0 0; color: #92a0aa; font-size: 11px; }
+.section-hint { margin-top: 9px; }
+.two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 0; border-radius: 8px; padding: 0 15px; font-size: 12px; font-weight: 700; text-align: center; cursor: pointer; transition: transform .15s, filter .15s; }
+.button:hover { filter: brightness(.97); transform: translateY(-1px); }
+.button-primary { color: #fff; background: var(--blue); box-shadow: 0 6px 13px #178fd02b; }
+.button-orange { color: #fff; background: var(--orange); box-shadow: 0 6px 13px #ff790024; }
+.button-outline { border: 1px solid #a8d8f1; color: var(--blue-dark); background: white; }
+.action-button { flex: none; min-width: 148px; white-space: nowrap; }
+.check-row { display: flex; align-items: flex-start; gap: 9px; margin: 21px 0 17px; color: #687987; font-size: 12px; }
+.check-row input { margin-top: 5px; accent-color: var(--blue); }
+.check-row a { margin: 0 2px; text-decoration: underline; text-underline-offset: 2px; }
+.submit-button { width: 100%; min-height: 48px; font-size: 14px; }
+.login-prompt { margin: 17px 0 0; color: var(--muted); text-align: center; font-size: 12px; }
+.login-prompt a { margin-left: 5px; font-weight: 700; }
+.side-panel { position: sticky; top: 20px; padding: 28px 25px; color: white; background: linear-gradient(145deg, #188fd0, #0877b7); border-color: transparent; }
+.side-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #ffffff52; border-radius: 12px; background: #ffffff19; font-size: 20px; }
+.side-panel h2 { margin: 14px 0 5px; font-size: 19px; }
+.side-intro { margin: 0 0 19px; color: #d4edfa; font-size: 12px; }
+.benefit-list { display: grid; gap: 17px; margin: 0; padding: 0; list-style: none; }
+.benefit-list li { display: grid; grid-template-columns: 34px 1fr; gap: 11px; align-items: start; }
+.benefit-list li > span { width: 31px; height: 31px; display: grid; place-items: center; border: 1px solid #ffffff5c; border-radius: 50%; color: #fff; font-size: 10px; font-weight: 700; }
+.benefit-list strong { display: block; font-size: 13px; }
+.benefit-list p { margin: 3px 0 0; color: #d4edfa; font-size: 11px; line-height: 1.6; }
+.side-note { margin-top: 21px; padding: 11px 12px; border: 1px solid #ffffff30; border-radius: 9px; color: #e2f5ff; background: #ffffff12; font-size: 11px; }
+.side-note span { margin-right: 5px; }
+.completion-options { display: grid; grid-template-columns: 48px 1fr auto; gap: 15px; align-items: center; margin-top: 22px; padding: 20px 23px; border: 1px solid #e5edf2; border-radius: 14px; background: #fff; box-shadow: 0 10px 28px #1e4a680a; }
+.success-mark { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; color: #168bca; background: #e7f6ff; font-size: 22px; font-weight: 800; }
+.completion-copy h2 { margin: 1px 0 2px; font-size: 15px; }
+.completion-copy p { margin: 0; color: var(--muted); font-size: 11px; }
+.completion-actions { display: flex; gap: 8px; }
+.completion-actions .button { min-width: 115px; }
+.prototype-note { margin: 13px 0 0; color: #8b99a4; text-align: center; font-size: 10px; }
+.page-footer { margin: 22px 0 30px; color: #8b99a4; text-align: center; font-size: 10px; }
+.page-footer span { margin-left: 8px; color: #aab5bd; }
+@media (max-width: 760px) {
+  .site-header { height: 64px; padding: 0 18px; }
+  .brand-mark { width: 36px; height: 36px; }
+  .page-shell { width: min(100% - 28px, 560px); }
+  .intro { padding: 31px 0 18px; }
+  .content-grid { grid-template-columns: 1fr; gap: 13px; }
+  .form-card { padding: 23px 20px 19px; }
+  .side-panel { position: static; padding: 22px; }
+  .side-panel h2 { margin: 10px 0 5px; }
+  .benefit-list { gap: 13px; }
+  .side-note { margin-top: 16px; }
+  .completion-options { grid-template-columns: 42px 1fr; gap: 11px; padding: 17px; }
+  .success-mark { width: 40px; height: 40px; }
+  .completion-actions { grid-column: 1 / -1; }
+  .completion-actions .button { flex: 1; }
+}
+@media (max-width: 480px) {
+  .header-link { font-size: 11px; }
+  .brand-copy strong { font-size: 17px; }
+  .page-shell { width: calc(100% - 22px); }
+  .form-card { padding: 21px 15px 18px; }
+  .card-heading h2 { font-size: 19px; }
+  .input-action-row { align-items: stretch; flex-direction: column; }
+  .action-button { width: 100%; min-height: 40px; }
+  .two-column { grid-template-columns: 1fr; gap: 0; }
+  .completion-options { grid-template-columns: 1fr; text-align: center; }
+  .success-mark { justify-self: center; }
+  .completion-actions { grid-column: auto; flex-direction: column; }
+  .prototype-note { padding: 0 5px; }
+}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="買動漫首頁">
+      <span class="brand-mark" aria-hidden="true">買</span>
+      <span class="brand-copy"><strong>買動漫</strong><small>MYACG.COM.TW</small></span>
+    </a>
+    <a class="header-link" href="#login">已經是會員？<strong>登入</strong></a>
+  </header>
+
+  <main id="top" class="page-shell">
+    <section class="intro">
+      <span class="eyebrow">MYACG MEMBER</span>
+      <h1>加入買動漫</h1>
+      <p>填寫並驗證以下資料，即可完成會員註冊。</p>
+    </section>
+
+    <div class="content-grid">
+      <section class="form-card" aria-labelledby="form-title">
+        <div class="card-heading">
+          <div><p class="stage-label">MEMBER REGISTRATION</p><h2 id="form-title">建立你的會員帳號</h2></div>
+          <span class="lock-icon" aria-hidden="true">✓</span>
+        </div>
+        <p class="card-lead">請一次填妥帳號與會員資料。真實姓名及 Email 為完成註冊的必要資料。</p>
+
+        <form action="#registration-complete" method="get">
+          <fieldset>
+            <legend><span>01</span>登入帳號資料</legend>
+            <div class="form-field">
+              <label for="phone">手機號碼 <em>必填</em></label>
+              <div class="input-action-row">
+                <div class="input-with-prefix"><span>+886</span><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="請輸入手機號碼" required></div>
+                <button class="button button-outline action-button" type="button">取得簡訊驗證碼</button>
+              </div>
+              <p class="field-hint">請輸入可接收簡訊的手機號碼。</p>
+            </div>
+            <div class="form-field">
+              <label for="sms-code">手機簡訊驗證碼 <em>必填</em></label>
+              <input id="sms-code" name="sms_code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="輸入簡訊中的驗證碼" required>
+            </div>
+            <div class="form-field">
+              <label for="username">設定帳號 <em>必填</em></label>
+              <input id="username" name="username" type="text" autocomplete="username" placeholder="8–15 位英文字母或數字" minlength="8" maxlength="15" required>
+            </div>
+            <div class="two-column">
+              <div class="form-field">
+                <label for="password">設定密碼 <em>必填</em></label>
+                <input id="password" name="password" type="password" autocomplete="new-password" placeholder="請設定登入密碼" minlength="8" required>
+              </div>
+              <div class="form-field">
+                <label for="password-confirm">確認密碼 <em>必填</em></label>
+                <input id="password-confirm" name="password_confirm" type="password" autocomplete="new-password" placeholder="再次輸入密碼" required>
+              </div>
+            </div>
+            <p class="field-hint section-hint">帳號需為 8–15 位英文字母或數字；密碼至少 8 個字元。</p>
+          </fieldset>
+
+          <fieldset>
+            <legend><span>02</span>會員基本資料</legend>
+            <div class="form-field">
+              <label for="real-name">真實姓名 <em>必填</em></label>
+              <input id="real-name" name="real_name" autocomplete="name" placeholder="請填寫真實姓名" required>
+              <p class="field-hint">如有交易退款，將用於確認收款人資料。</p>
+            </div>
+            <div class="form-field">
+              <label for="email">電子信箱 <em>必填</em></label>
+              <div class="input-action-row">
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+                <button class="button button-outline action-button" type="button">寄送 Email 驗證碼</button>
+              </div>
+              <p class="field-hint">請使用可正常收信的 Email，以接收買動漫通知。</p>
+            </div>
+            <div class="form-field">
+              <label for="email-code">Email 驗證碼 <em>必填</em></label>
+              <input id="email-code" name="email_code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="輸入 Email 中的驗證碼" required>
+            </div>
+          </fieldset>
+
+          <label class="check-row"><input type="checkbox" required><span>我已閱讀並同意<a href="#terms">服務條款</a>與<a href="#privacy">隱私權政策</a></span></label>
+          <button class="button button-primary submit-button" type="submit">驗證資料並完成註冊 <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="login-prompt" id="login">已經有買動漫帳號？<a href="#login">立即登入</a></p>
+      </section>
+
+      <aside class="side-panel">
+        <div class="side-icon" aria-hidden="true">✦</div>
+        <h2>一次完成註冊驗證</h2>
+        <p class="side-intro">所有欄位都在同一頁填寫，依序取得驗證碼並完成驗證。</p>
+        <ul class="benefit-list">
+          <li><span>01</span><div><strong>驗證手機號碼</strong><p>取得簡訊驗證碼，確認帳號安全。</p></div></li>
+          <li><span>02</span><div><strong>建立登入帳密</strong><p>設定日後登入買動漫使用的帳號與密碼。</p></div></li>
+          <li><span>03</span><div><strong>填寫姓名與 Email</strong><p>驗證 Email 以接收訂單通知，並填寫真實姓名。</p></div></li>
+        </ul>
+        <div class="side-note"><span aria-hidden="true">ⓘ</span> LINE 帳號可於註冊完成後，在個人資料中自行綁定。</div>
+      </aside>
+    </div>
+
+    <section class="completion-options" id="registration-complete" aria-labelledby="complete-title">
+      <div class="success-mark" aria-hidden="true">✓</div>
+      <div class="completion-copy"><span class="stage-label">AFTER REGISTRATION</span><h2 id="complete-title">完成註冊後，選擇接下來要做的事</h2><p>你可以前往購物，或繼續進行賣家認證。</p></div>
+      <div class="completion-actions"><a class="button button-orange" href="/">前往購物</a><a class="button button-outline" href="/seller/verify">成為賣家</a></div>
+    </section>
+    <p class="prototype-note">此頁為介面示意；簡訊、Email 驗證及註冊送出需串接後端功能。</p>
+    <footer class="page-footer">© 買動漫 MYACG　<span>會員註冊</span></footer>
+  </main>
+</body>
+</html>
