@@ -1,9 +1,8 @@
-
 <!doctype html>
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NAS1 權限申請表</title>
+<title>NAS 權限申請表</title>
 <style>
 :root{--navy:#15304d;--blue:#2878c7;--blue2:#eaf4ff;--ink:#26384b;--muted:#718096;--line:#dce6f0;--bg:#f2f6fa;--red:#c43d4b;--green:#16794b}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#eef5fb,#f8fafc 48%,#eaf2fa);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans TC",sans-serif;color:var(--ink);padding:36px 16px}
@@ -11,24 +10,32 @@
 .card{background:#fff;border:1px solid #e1eaf2;border-radius:24px;box-shadow:0 18px 50px #24436112;overflow:hidden}.hero{padding:27px 30px 23px;background:linear-gradient(110deg,#173b5e,#23649a);color:#fff}.hero h2{margin:0 0 9px;font-size:20px}.hero p{margin:0;color:#e5f2ff;line-height:1.7;font-size:14px}.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}.tag{border:1px solid #ffffff48;background:#ffffff12;padding:6px 10px;border-radius:999px;font-size:12px}
 form{padding:28px 30px 30px}.section-title{font-weight:800;color:var(--navy);font-size:16px;margin:2px 0 18px;display:flex;align-items:center;gap:9px}.section-title:before{content:"";width:5px;height:18px;border-radius:4px;background:var(--blue)}.fields{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px}.field.full{grid-column:1/-1}label.title{display:block;font-size:14px;font-weight:700;margin:0 0 8px} .req{color:var(--red);margin-left:4px}input,select{font:inherit;width:100%;height:48px;border:1px solid #ccd9e5;border-radius:13px;padding:0 14px;background:#fff;color:var(--ink);outline:none;transition:.18s}input:focus,select:focus{border-color:#4e9ae4;box-shadow:0 0 0 4px #2878c71c}.hint{font-size:12px;line-height:1.65;color:var(--muted);margin:7px 2px 0}.password-wrap{position:relative}.password-wrap input{padding-right:78px}.toggle{position:absolute;right:9px;top:8px;height:32px;border:0;border-radius:9px;background:#eef5fb;color:#315b7e;font-weight:700;cursor:pointer;padding:0 10px}
 .divider{height:1px;background:#e7edf3;margin:28px 0 23px}.permission-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.permission-head .hint{margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.choice{position:relative}.choice input{position:absolute;opacity:0;width:1px;height:1px}.choice label{display:flex;align-items:center;gap:11px;min-height:54px;border:1px solid var(--line);border-radius:15px;padding:12px 14px;cursor:pointer;transition:.18s;font-weight:650}.choice label:before{content:"";width:18px;height:18px;border:1.5px solid #9eb1c2;border-radius:5px;background:white;flex:none}.choice input:checked+label{border-color:#5a9ee0;background:var(--blue2);color:#174d7e;box-shadow:0 0 0 3px #2878c710}.choice input:checked+label:before{content:"✓";display:grid;place-items:center;background:var(--blue);border-color:var(--blue);color:white;font-size:13px;font-weight:900}.choice input:focus-visible+label{outline:3px solid #2878c744}.notice{margin-top:17px;padding:13px 15px;border-radius:14px;background:#fff8e9;border:1px solid #f2dfb2;color:#785b1d;font-size:13px;line-height:1.65}.approval{display:flex;align-items:flex-start;gap:10px;padding:15px;border-radius:14px;background:#f6f9fc;border:1px solid #e1eaf2;margin-top:18px;font-size:13px;line-height:1.6}.approval input{width:18px;height:18px;min-width:18px;margin:1px 0 0;accent-color:var(--blue)}.actions{margin-top:24px;display:flex;align-items:center;gap:14px}.submit{border:0;border-radius:14px;background:#216fb2;color:white;font:inherit;font-weight:800;padding:14px 24px;cursor:pointer;box-shadow:0 8px 18px #216fb233;transition:.18s}.submit:hover{background:#185d98;transform:translateY(-1px)}.foot{font-size:12px;color:var(--muted);line-height:1.6}.msg{display:none;margin-top:18px;border-radius:13px;padding:13px 15px;font-size:14px}.msg.error{display:block;color:#8f2632;background:#fff0f1;border:1px solid #f2c8cc}.msg.success{display:block;color:#17633f;background:#edfaf3;border:1px solid #bee8d0}.strength{margin-top:8px;height:5px;border-radius:5px;background:#edf1f5;overflow:hidden}.strength span{display:block;width:0;height:100%;background:#3a9b68;transition:.2s}
+.print-sheet{display:none}
+@media print{ @page{margin:18mm} body{padding:0;background:#fff;color:#222}.wrap{max-width:none}.top,.card{display:none!important}.print-sheet{display:block!important;font-family:system-ui,"Noto Sans TC",sans-serif}.print-sheet h1{text-align:center;color:#173b5e;margin:0 0 8px}.print-sub{text-align:center;color:#555;margin:0 0 28px}.print-row{display:grid;grid-template-columns:150px 1fr;border:1px solid #cbd5df;border-bottom:0}.print-row:last-of-type{border-bottom:1px solid #cbd5df}.print-label,.print-value{padding:13px 15px}.print-label{background:#f0f5f9;font-weight:700;border-right:1px solid #cbd5df}.print-perms{line-height:1.8}.signatures{display:flex;justify-content:space-between;margin-top:64px}.signatures div{width:42%;border-top:1px solid #555;padding-top:8px;text-align:center}.print-note{margin-top:20px;color:#555;font-size:12px}}
 @media(max-width:600px){body{padding:20px 12px}.top h1{font-size:21px}.hero{padding:23px 20px}.hero h2{font-size:18px}form{padding:23px 18px}.fields{grid-template-columns:1fr;gap:16px}.field.full{grid-column:auto}.grid{grid-template-columns:1fr}.actions{align-items:stretch;flex-direction:column}.submit{width:100%}.foot{text-align:center}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="top"><div class="mark">NAS1</div><div><div class="eyebrow">ACCESS REQUEST</div><h1>NAS1 權限申請表</h1></div></header>
+  <header class="top"><div class="mark">NAS1</div><div><div class="eyebrow">ACCESS REQUEST</div><h1>NAS 權限申請表</h1></div></header>
   <main class="card">
-    <section class="hero"><h2>申請 NAS1 資料夾存取權限</h2><p>請填寫申請人資料、設定登入帳號與密碼，並勾選需要的資料夾。提交前請先取得主管同意。</p><div class="tags"><span class="tag">🔐 帳號資料需妥善保管</span><span class="tag">📁 可申請多個區域</span><span class="tag">✅ 必須經主管同意</span></div></section>
+    <section class="hero"><h2>申請 NAS 資料夾存取權限</h2><p>請填寫申請人資料、選擇 NAS 系統與資料夾權限。提交前請先取得主管同意。</p><div class="tags"><span class="tag">🔐 帳號資料需妥善保管</span><span class="tag">📁 可申請多個區域</span><span class="tag">✅ 必須經主管同意</span></div></section>
     <form id="requestForm" novalidate>
       <div class="section-title">申請人資料</div>
       <div class="fields">
         <div class="field"><label class="title" for="applicant">申請人名稱<span class="req">*</span></label><input id="applicant" name="applicant" autocomplete="name" maxlength="40" placeholder="請輸入姓名" required><p class="hint">請填寫可辨識的中文姓名或公司內部使用名稱。</p></div>
-        <div class="field"><label class="title" for="department">所屬部門<span class="req">*</span></label><select id="department" name="department" required><option value="">請選擇部門</option><option>業務部</option><option>版權部</option><option>物流部</option><option>行銷部</option><option>財務部</option><option>其他部門</option></select><p class="hint">如選擇「其他部門」，請在申請人名稱欄補充部門名稱。</p></div>
+        <div class="field"><label class="title" for="department">所屬部門<span class="req">*</span></label><input id="department" name="department" autocomplete="organization" maxlength="40" placeholder="請自行輸入所屬部門" required><p class="hint">請自行填寫部門名稱。</p></div>
         <div class="field"><label class="title" for="account">申請帳號<span class="req">*</span></label><input id="account" name="account" autocomplete="username" minlength="8" maxlength="32" placeholder="至少 8 個字元" required><p class="hint">至少 8 個字元，需包含大寫字母、小寫字母，並包含數字或符號。帳號不可與密碼相同。</p></div>
         <div class="field"><label class="title" for="password">申請密碼<span class="req">*</span></label><div class="password-wrap"><input id="password" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="64" placeholder="至少 8 個字元" required><button class="toggle" type="button" data-target="password">顯示</button></div><div class="strength"><span id="strengthBar"></span></div><p class="hint">至少 8 個字元，需包含大寫字母、小寫字母，並包含數字或符號。請勿與申請帳號設定相同。</p></div>
       </div>
       <div class="divider"></div>
-      <div class="permission-head"><div class="section-title">欲申請的權限<span class="req">*</span></div><span class="hint">至少勾選一個資料夾</span></div>
+      <div class="permission-head"><div class="section-title">欲申請的 NAS<span class="req">*</span></div><span class="hint">至少勾選一台</span></div>
+      <div class="grid" id="nasSystems">
+        <div class="choice"><input type="checkbox" id="nas1" name="nasSystem" value="NAS1"><label for="nas1">NAS1</label></div>
+        <div class="choice"><input type="checkbox" id="nas2" name="nasSystem" value="NAS2"><label for="nas2">NAS2</label></div>
+      </div>
+      <div class="divider"></div>
+      <div class="permission-head"><div class="section-title">欲申請的路徑權限<span class="req">*</span></div><span class="hint">至少勾選一個資料夾</span></div>
       <div class="grid" id="permissions">
         <div class="choice"><input type="checkbox" id="p-share" name="permission" value="共用區"><label for="p-share">共用區</label></div>
         <div class="choice"><input type="checkbox" id="p-sales" name="permission" value="業務部"><label for="p-sales">業務部</label></div>
@@ -41,9 +48,10 @@ form{padding:28px 30px 30px}.section-title{font-weight:800;color:var(--navy);fon
       <div class="notice">⚠️ <strong>權限申請提醒：</strong>請只勾選工作所需的資料夾，並先取得主管同意。申請送出後，將由管理人員審核與設定權限。</div>
       <label class="approval"><input type="checkbox" id="approved" required><span>我已取得主管同意，並確認以上申請資料與所需權限正確。<span class="req">*</span></span></label>
       <div id="message" class="msg" role="alert" aria-live="polite"></div>
-      <div class="actions"><button type="submit" class="submit">送出權限申請</button><div class="foot">請勿使用與其他系統相同的密碼。此頁面為表單介面範本，尚未連接實際申請系統。</div></div>
+      <div class="actions"><button type="submit" class="submit">列印申請表單</button><div class="foot">請勿使用與其他系統相同的密碼。按下列印後可列印已填寫的申請內容。</div></div>
     </form>
   </main>
+  <section id="printArea" class="print-sheet" aria-hidden="true"></section>
 </div>
 <script>
 const form=document.getElementById('requestForm'), account=document.getElementById('account'), password=document.getElementById('password'), msg=document.getElementById('message');
@@ -57,9 +65,24 @@ form.addEventListener('submit',e=>{e.preventDefault();msg.className='msg';msg.te
  if(!pattern.test(account.value)) error='帳號需至少 8 個字元，並包含大寫字母、小寫字母，以及至少一個數字或符號。';
  else if(!pattern.test(password.value)) error='密碼需至少 8 個字元，並包含大寫字母、小寫字母，以及至少一個數字或符號。';
  else if(account.value.toLowerCase()===password.value.toLowerCase()) error='申請帳號與申請密碼不可相同。';
+ else if(document.querySelectorAll('input[name="nasSystem"]:checked').length===0) error='請至少選擇一台 NAS 系統。';
  else if(selected.length===0) error='請至少選擇一個欲申請的資料夾權限。';
  if(error){msg.textContent='請檢查申請資料：'+error;msg.classList.add('error');return;}
- msg.textContent='資料格式檢查完成！此範本尚未連接申請系統，請串接後端後再正式收件。';msg.classList.add('success');
+ const esc=value=>String(value).replace(/[&<>\"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[ch]));
+ const permissionText=selected.map(item=>item.value).join('、');
+ const nasText=[...document.querySelectorAll('input[name="nasSystem"]:checked')].map(item=>item.value).join('、');
+ const now=new Date();const printDate=now.toLocaleString('zh-TW',{dateStyle:'medium',timeStyle:'short'});
+ document.getElementById('printArea').innerHTML='<h1>NAS 權限申請表</h1><p class="print-sub">申請資料請由主管及 NAS 管理人員審核</p>'+
+ '<div class="print-row"><div class="print-label">申請 NAS</div><div class="print-value">'+esc(nasText)+'</div></div>'+
+ '<div class="print-row"><div class="print-label">申請人名稱</div><div class="print-value">'+esc(document.getElementById('applicant').value.trim())+'</div></div>'+
+ '<div class="print-row"><div class="print-label">所屬部門</div><div class="print-value">'+esc(document.getElementById('department').value.trim())+'</div></div>'+
+ '<div class="print-row"><div class="print-label">申請帳號</div><div class="print-value">'+esc(account.value.trim())+'</div></div>'+
+ '<div class="print-row"><div class="print-label">申請密碼</div><div class="print-value">'+esc(password.value)+'</div></div>'+
+ '<div class="print-row"><div class="print-label">欲申請的權限</div><div class="print-value print-perms">'+esc(permissionText)+'</div></div>'+
+ '<div class="print-row"><div class="print-label">主管同意</div><div class="print-value">☑ 已取得主管同意</div></div>'+
+ '<div class="print-row"><div class="print-label">申請日期</div><div class="print-value">'+esc(printDate)+'</div></div>'+
+ '<div class="signatures"><div>申請人簽名</div><div>主管核章</div></div><p class="print-note">備註：此表單列印後請依公司流程交由 NAS 管理人員辦理權限設定。</p>';
+ window.print();
 });
 </script>
 </body>
