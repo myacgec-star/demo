@@ -38,6 +38,10 @@ form{padding:28px 30px 30px}.section-title{font-weight:800;color:var(--navy);fon
       <div class="permission-head"><div class="section-title">欲申請的路徑權限<span class="req">*</span></div><span class="hint">至少勾選一個資料夾</span></div>
       <div class="grid" id="permissions">
         <div class="choice"><input type="checkbox" id="p-share" name="permission" value="共用區"><label for="p-share">共用區</label></div>
+        <div class="choice"><input type="checkbox" id="p-cafe" name="permission" value="咖啡廳"><label for="p-cafe">咖啡廳</label></div>
+        <div class="choice"><input type="checkbox" id="p-image-share" name="permission" value="圖檔共用區"><label for="p-image-share">圖檔共用區</label></div>
+        <div class="choice"><input type="checkbox" id="p-procurement" name="permission" value="採購部"><label for="p-procurement">採購部</label></div>
+        <div class="choice"><input type="checkbox" id="p-design" name="permission" value="設計部"><label for="p-design">設計部</label></div>
         <div class="choice"><input type="checkbox" id="p-sales" name="permission" value="業務部"><label for="p-sales">業務部</label></div>
         <div class="choice"><input type="checkbox" id="p-copyright" name="permission" value="版權部"><label for="p-copyright">版權部</label></div>
         <div class="choice"><input type="checkbox" id="p-logistics" name="permission" value="物流部"><label for="p-logistics">物流部</label></div>
@@ -48,7 +52,7 @@ form{padding:28px 30px 30px}.section-title{font-weight:800;color:var(--navy);fon
       <div class="notice">⚠️ <strong>權限申請提醒：</strong>請只勾選工作所需的資料夾，並先取得主管同意。申請送出後，將由管理人員審核與設定權限。</div>
       <label class="approval"><input type="checkbox" id="approved" required><span>我已取得主管同意，並確認以上申請資料與所需權限正確。<span class="req">*</span></span></label>
       <div id="message" class="msg" role="alert" aria-live="polite"></div>
-      <div class="actions"><button type="submit" class="submit">列印申請表單</button><div class="foot">請勿使用與其他系統相同的密碼。按下列印後可列印已填寫的申請內容。</div></div>
+      <div class="actions"><button type="submit" class="submit">另存成 PDF</button><div class="foot">請勿使用與其他系統相同的密碼。送出前完成欄位檢查，接著在列印視窗選擇「另存為 PDF」。檔名會依姓名與日期帶入。</div></div>
     </form>
   </main>
   <section id="printArea" class="print-sheet" aria-hidden="true"></section>
@@ -72,6 +76,9 @@ form.addEventListener('submit',e=>{e.preventDefault();msg.className='msg';msg.te
  const permissionText=selected.map(item=>item.value).join('、');
  const nasText=[...document.querySelectorAll('input[name="nasSystem"]:checked')].map(item=>item.value).join('、');
  const now=new Date();const printDate=now.toLocaleString('zh-TW',{dateStyle:'medium',timeStyle:'short'});
+ const ymd=[now.getFullYear(),String(now.getMonth()+1).padStart(2,'0'),String(now.getDate()).padStart(2,'0')].join('');
+ const safeName=document.getElementById('applicant').value.trim().replace(/[\\/:*?"<>|\x00-\x1f]/g,'_');
+ const originalTitle=document.title;document.title=safeName+'＊權限申請＊'+ymd;
  document.getElementById('printArea').innerHTML='<h1>NAS 權限申請表</h1><p class="print-sub">申請資料請由主管及 NAS 管理人員審核</p>'+
  '<div class="print-row"><div class="print-label">申請 NAS</div><div class="print-value">'+esc(nasText)+'</div></div>'+
  '<div class="print-row"><div class="print-label">申請人名稱</div><div class="print-value">'+esc(document.getElementById('applicant').value.trim())+'</div></div>'+
@@ -82,6 +89,7 @@ form.addEventListener('submit',e=>{e.preventDefault();msg.className='msg';msg.te
  '<div class="print-row"><div class="print-label">主管同意</div><div class="print-value">☑ 已取得主管同意</div></div>'+
  '<div class="print-row"><div class="print-label">申請日期</div><div class="print-value">'+esc(printDate)+'</div></div>'+
  '<div class="signatures"><div>申請人簽名</div><div>主管核章</div></div><p class="print-note">備註：此表單列印後請依公司流程交由 NAS 管理人員辦理權限設定。</p>';
+ window.addEventListener('afterprint',()=>{document.title=originalTitle},{once:true});
  window.print();
 });
 </script>
